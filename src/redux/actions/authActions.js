@@ -55,36 +55,6 @@ export const signin = (email, password) => async (dispatch) => {
   }
 };
 
-// export const load_user =
-//   (sign = false) =>
-//   async (dispatch) => {
-//     if (localStorage.getItem("token")) {
-//       const config = {
-//         headers: {
-//           "Content-Type": "application/json",
-//           "x-access-token": localStorage.getItem("token"),
-//         },
-//       };
-//       try {
-//         await axios.get(REQUEST_URL + `user/me/`, config).then((res) => {
-//           dispatch({
-//             type: actions.USER_LOADED_SUCCESS,
-//             payload: res.data,
-//           });
-//         });
-//       } catch (err) {
-//         console.log(err, "this is error while loading user");
-//         dispatch({
-//           type: actions.USER_LOADED_FAIL,
-//         });
-//       }
-//     } else {
-//       dispatch({
-//         type: actions.USER_LOADED_FAIL,
-//       });
-//     }
-//   };
-
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({

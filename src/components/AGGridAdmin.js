@@ -1,12 +1,10 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable no-unused-vars */
 import {connect} from "react-redux"
 import {AgGridReact} from 'ag-grid-react';
 import 'ag-grid-community/styles//ag-grid.css';
 import { REQUEST_URL } from '../redux/constantURL';
 import 'ag-grid-community/styles//ag-theme-alpine.css';
 import { deletebook } from '../redux/actions/bookActions';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 
 
@@ -29,7 +27,7 @@ function AGGridAdmin({state,deletebook}) {
     const [categoryData, setcategoryData] = useState(); // Set rowData to Array of Objects, one Object per Row
     let newrowData=[];
     // Each Column Definition results in one Column.
-    const [columnDefs, setColumnDefs] = useState([
+    const [columnDefs] = useState([
       {field: 'bookname', filter: true},
       {
         field: 'author',
@@ -68,13 +66,13 @@ function AGGridAdmin({state,deletebook}) {
       }),[]);
    
     // Example of consuming Grid Event
-    const cellClickedListener = useCallback( event => {
-      console.log('cellClicked', event);
-    }, []);
+    // const cellClickedListener = useCallback( event => {
+    //   console.log('cellClicked', event);
+    // }, []);
    function getalldata(){
         let data = []
-        rowData.map(d=>{
-            categoryData.map(cat=>{
+        rowData.forEach(d=>{
+            categoryData.forEach(cat=>{
                 if(d.category === cat._id){
                     // console.log(cat)
                     let newdata = {}

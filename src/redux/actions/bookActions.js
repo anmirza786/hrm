@@ -44,14 +44,7 @@ export const addbook = (bookname,author,category,published) => async (dispatch) 
         "x-access-token": localStorage.getItem("token"),
       },
     };
-    //     const body = JSON.stringify({
-    //     bookname: "Things that are Deamons",
-    //     author: "AK",
-    //     category: "63db77d9f7286c49928cc2c9",
-    //     published: "2022-12-19T04:36:17.607+00:00"
-    // })
-      // console.log(body)
-      await axios.post(REQUEST_URL + `books/add-book`, body, config)
+    await axios.post(REQUEST_URL + `books/add-book`, body, config)
       .then((res) => {
         dispatch({
           type: actions.ADDED_BOOK_SUCCESS,
