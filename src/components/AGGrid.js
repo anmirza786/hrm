@@ -1,35 +1,21 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable no-unused-vars */
 import {connect} from "react-redux"
-import {AgGridReact} from 'ag-grid-react';
+import { AgGridReact } from "ag-grid-react";
 import 'ag-grid-community/styles//ag-grid.css';
 import { REQUEST_URL } from '../redux/constantURL';
 import 'ag-grid-community/styles//ag-theme-alpine.css';
 import { deletebook } from '../redux/actions/bookActions';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 
 
-function AGGrid({state,deletebook}) {
-    const [deleted, setdeleted] = useState(false);
-    function EditButton(props) {
-        function btnClickedHandler() {
-        //  this.props.clicked(this.props.value);
-        // console.log(props.data._id)
-        deletebook(props.data._id)
-        setdeleted(true)
-        }
-          return (
-            <button onClick={btnClickedHandler}>Delete Me!</button>
-          )
-    }
+function AGGridAdmin({state,deletebook}) {
     const gridRef = useRef(); // Optional - for accessing Grid's API
     const [rowData, setRowData] = useState();
     // const [newrowData, setnewRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
     const [categoryData, setcategoryData] = useState(); // Set rowData to Array of Objects, one Object per Row
     let newrowData=[];
     // Each Column Definition results in one Column.
-    const [columnDefs, setColumnDefs] = useState([
+    const [columnDefs] = useState([
       {field: 'bookname', filter: true},
       {
         field: 'author',
@@ -51,7 +37,7 @@ function AGGrid({state,deletebook}) {
         filterParams: {
           applyMiniFilterWhileTyping: true,
       },
-      },
+      }
     ]);
    
     // DefaultColDef sets props common to all Columns
@@ -60,13 +46,13 @@ function AGGrid({state,deletebook}) {
       }),[]);
    
     // Example of consuming Grid Event
-    const cellClickedListener = useCallback( event => {
-      console.log('cellClicked', event);
-    }, []);
+    // const cellClickedListener = useCallback( event => {
+    //   console.log('cellClicked', event);
+    // }, []);
    function getalldata(){
         let data = []
-        rowData.map(d=>{
-            categoryData.map(cat=>{
+        rowData.forEach(d=>{
+            categoryData.forEach(cat=>{
                 if(d.category === cat._id){
                     // console.log(cat)
                     let newdata = {}
@@ -85,7 +71,7 @@ function AGGrid({state,deletebook}) {
                             bookname: d.bookname,
                             author: d.author,
                             category: cat.category_name,
-                            published: d.published.split('T')[1]
+                            published: d.published.split('T')[0]
                         }
                 }
                 data.push(newdata)
@@ -105,7 +91,7 @@ function AGGrid({state,deletebook}) {
       .then(result=>result.json())
       .then(rows=>setcategoryData(rows))
       
-    }, [deleted]);
+    }, []);
     
    
     return (
@@ -135,4 +121,4 @@ function AGGrid({state,deletebook}) {
 const mapStateToProps = (state) => ({
     state: state,
   });
-export default connect(mapStateToProps,{deletebook})(AGGrid);
+export default connect(mapStateToProps,{deletebook})(AGGridAdmin);

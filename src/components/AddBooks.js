@@ -1,13 +1,11 @@
-import {useState, useEffect} from 'react'
 import Box from '@mui/material/Box'
-import { connect } from 'react-redux'
+import {useState, useEffect} from 'react'
 import Button from '@mui/material/Button'
 import { REQUEST_URL } from '../redux/constantURL'
-import { signin } from '../redux/actions/authActions'
 import { addbook } from '../redux/actions/bookActions'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 
-function AddBooks({ signin,addbook }) {
+function AddBooks() {
     const [cat, setcat] = useState('');
     const [category,setCategory] = useState('');
     useEffect(() => {
@@ -27,7 +25,6 @@ function AddBooks({ signin,addbook }) {
         const category= data.get("category")
         const published= data.get("date")
         addbook(bookname,author,category,`${published}T00:00:00.000+00:00`)
-        // console.log(data,bookname,author,category,published)
       };
     return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center",width: "100%"}}>
@@ -92,4 +89,4 @@ function AddBooks({ signin,addbook }) {
     );
 }
 
-export default connect(null,{ signin,addbook })(AddBooks);
+export default AddBooks;
