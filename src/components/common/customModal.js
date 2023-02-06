@@ -19,19 +19,19 @@ const style = {
 function CustomModal(props) {
     return (
         <div>
-                <Button onClick={props.handleOpen} variant="contained" color="primary" style = {{margin: "0 20px 0 0"}}>{props.buttonName}</Button>
-                <Modal
-                  open={props.open}
-                  onClose={props.handleClose}
-                  aria-labelledby="modal-modal-title"
-                  s
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                    {props.component}
-                  </Box>
-                </Modal>
-              </div>
+          <Button onClick={props.handleOpen} variant="contained" color="primary" style = {{margin: "0 20px 0 0"}}>{props.buttonName}</Button>
+          <Modal
+            open={props.open}
+            onClose={props.handleClose}
+            aria-labelledby="modal-modal-title"
+            s
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              {props.component}
+            </Box>
+          </Modal>
+        </div>
     );
 }
 
