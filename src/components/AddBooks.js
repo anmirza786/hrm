@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import Box from '@mui/material/Box'
 import { connect } from 'react-redux'
 import Button from '@mui/material/Button'
@@ -8,9 +8,9 @@ import { addbook } from '../redux/actions/bookActions'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 
 function AddBooks({ signin,addbook }) {
-    const [cat, setcat] = React.useState('');
-    const [category,setCategory] = React.useState('');
-    React.useEffect(() => {
+    const [cat, setcat] = useState('');
+    const [category,setCategory] = useState('');
+    useEffect(() => {
         fetch(REQUEST_URL + 'books/get-all-categories')
         .then(result=>result.json())
         .then(rows=>setCategory(rows))
