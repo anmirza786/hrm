@@ -7,8 +7,8 @@ export const initialState = {
   error: null,
   user: null,
   loading: false,
-  message: '',
-  addedbook: {}
+  message: "",
+  addedbook: {},
 };
 
 export function reducer(state = initialState, action) {
@@ -44,9 +44,7 @@ export function reducer(state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         error: null,
-        // user: payload,
         token: payload.token,
-        // refresh: payload.refresh,
       };
     case authactions.SIGNUP_SUCCESS:
       return {
@@ -77,31 +75,31 @@ export function reducer(state = initialState, action) {
         ...state,
         loading: false,
         error: null,
-        message: "Book Deleted Successfully"
+        message: "Book Deleted Successfully",
       };
     case booksactions.BOOK_DELETED_FAIL:
       return {
         ...state,
         loading: false,
         error: payload,
-        message: "Book Deleted Successfully"
+        message: "Book Deleted Successfully",
       };
-      case booksactions.ADDED_BOOK_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          error: null,
-          message: "Book Added Successfully",
-          addedbook: payload
-        };
-      case booksactions.ADDED_BOOK_FAIL:
-        return {
-          ...state,
-          loading: false,
-          error: payload,
-          message: "Book Deleted Successfully",
-          addedbook: null
-        };
+    case booksactions.ADDED_BOOK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        message: "Book Added Successfully",
+        addedbook: payload,
+      };
+    case booksactions.ADDED_BOOK_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+        message: "Book Deleted Successfully",
+        addedbook: null,
+      };
     default:
       return state;
   }
