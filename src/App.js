@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { connect } from 'react-redux'
 import AGGrid from './components/AGGrid'
